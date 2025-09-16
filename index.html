@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thiarène, Matam - Histoire et Culture</title>
+  <style>
+    :root {
+      --primary: #2d6a4f;
+      --secondary: #3cb371;
+      --light: #f5f5dc;
+      --accent: #d8f3dc;
+      --text: #333;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* NAVBAR */
+    nav {
+      background-color: var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 1rem;
+    }
+
+    .nav-logo {
+      font-weight: bold;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      width: 90%;
+      max-width: 1200px;
+      margin: 2rem auto;
+      display: grid;
+      gap: 2rem;
+    }
+
+    section {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, opacity 0.6s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--primary);
+      border-bottom: 2px solid var(--secondary);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      color: var(--primary);
+      margin-top: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+
+    /* STATS */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat-box {
+      background: var(--accent);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-box:hover {
+      transform: scale(1.05);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    /* LISTE CHEFS */
+    .chiefs-list {
+      columns: 2;
+      margin: 1rem 0;
+    }
+
+    .chiefs-list li {
+      margin-bottom: 0.5rem;
+      break-inside: avoid;
+    }
+
+    /* IMAGES / PLACEHOLDERS */
+    figure {
+      margin: 1.5rem 0;
+    }
+
+    .image-placeholder {
+      background-color: #e8f5e9;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: var(--radius);
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    /* QUOTE */
+    blockquote {
+      font-style: italic;
+      border-left: 4px solid var(--secondary);
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+      color: #555;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--primary);
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        width: 200px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .chiefs-list {
+        columns: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Thiarène, Matam</h1>
+    <p>Découvrez l'histoire et la culture de ce village sénégalais</p>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-logo">Thiarène</div>
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#demographie">Démographie</a></li>
+        <li><a href="#histoire">Histoire</a></li>
+        <li><a href="#chefs">Chefs</a></li>
+        <li><a href="#geographie">Géographie</a></li>
+        <li><a href="#culture">Culture</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main>
+    <!-- ACCUEIL -->
+    <section id="accueil">
+      <h2>Bienvenue à Thiarène</h2>
+      <p>Thiarène est un village historique situé dans la région de Matam, au nord-est du Sénégal. Ce village, riche en traditions et en histoire, représente un exemple fascinant de l'héritage culturel de la région.</p>
+      <figure>
+        <div class="image-placeholder">[Photo: Vue panoramique du village de Thiarène]</div>
+      </figure>
+      <p>Le village de Thiarène est connu pour sa communauté soudée, ses traditions ancestrales et son importance dans l'histoire régionale. Fondé par les familles Sarr et Diop, il continue de préserver son héritage tout en s'adaptant aux défis modernes.</p>
+    </section>
+
+    <!-- DEMOGRAPHIE -->
+    <section id="demographie">
+      <h2>Démographie</h2>
+      <p>Selon le recensement effectué par les jeunes de Thiarène en 2023, la population totale du village est estimée à :</p>
+      <div class="stats-container">
+        <div class="stat-box">
+          <div class="stat-number">4 627</div>
+          <div>Habitants</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">2 013</div>
+          <div>Hommes</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">2 614</div>
+          <div>Femmes</div>
+        </div>
+      </div>
+      <blockquote>Note : Ces chiffres sont une estimation et non un recensement officiel.</blockquote>
+    </section>
+
+    <!-- HISTOIRE -->
+    <section id="histoire">
+      <h2>Histoire et Fondation</h2>
+      <p>Les premiers habitants du village de Thiarène furent les Sarr et les Diop. Plus précisément, Mame Massar Sarr et Mame Ndiaga Diagne Diop furent les premiers hommes à s'installer dans ce village.</p>
+
+      <h3>Mame Ndiaga Diagne Diop</h3>
+      <p>Mame Ndiaga Diagne Diop habitait initialement dans le Djolof. Son père, un érudit, lui demanda d'aller dans le Fouta pour poursuivre ses études coraniques auprès d'Alpha Seydou Abass. Il logea d'abord à Sedo Sébé chez Gousoum Thiam, qui fut le premier habitant de Sedo. Comme Mame Ndiaga, Gousoum Thiam était Wolof.</p>
+      <p>Mame Ndiaga quitta ensuite Sedo pour étudier à Sedo Abass. Lorsqu'on lui donnait des versets coraniques à apprendre, il se rendait à Thiarène, sous un baobab, pour les mémoriser en paix.</p>
+
+      <h3>Mame Massar Sarr</h3>
+      <p>Mame Maelle Sarr, père de Massar Sarr, habitait également dans le Djolof. Avec l'arrivée des Français, il eut des problèmes avec Bourba Djolof, surnommé Lat Samba Ndiaye. Pour cette raison, il quitta le Djolof pour s'installer à Gollére avec ses deux enfants: Amina et Massar Sarr, laissant Ndéry avec ses oncles au Djolof.</p>
+      <p>Gollére est un village situé entre Podor et Matam, la commune la plus à l'Est de Saint-Louis, proche de la frontière mauritanienne (département de Podor).</p>
+      <p>Quelque temps après, Maelle trouva la mort. Massar et Amina, sachant qu'il y avait des Wolofs à Sedo, décidèrent de s'y rendre. Après les récoltes de mil, les habitants de Sedo leur donnèrent une telle quantité d’aumône qu'ils ne purent tout emporter. Massar décida alors de rester à Sedo avec sa sœur.</p>
+      <p>Pendant cette même période, Ndiaga Ndiagne passa deux ans d'études à Sedo Abass et informa son père de sa décision de rester. Lui et Massar étaient cependant quotidiennement dérangés par les Sédo-sédo, soit par leurs chants et danses, soit parce qu'ils prenaient les bâtons de leur mosquée pour en faire des feux de camp.</p>
+    </section>
+
+    <!-- CHEFS -->
+    <section id="chefs">
+      <h2>Chefs de Village et Successeurs</h2>
+      <p>Voici la liste des chefs qui se sont succédé à la tête du village de Thiarène :</p>
+      <ol class="chiefs-list">
+        <li>Massar Sarr</li>
+        <li>Ndery Sarr</li>
+        <li>Amadou Seyni Sarr</li>
+        <li>Amath Bassine Sarr</li>
+        <li>Babacar Sarr</li>
+        <li>Oumar Sarr</li>
+        <li>Salif Fama Sarr</li>
+        <li>Birane Fama Sarr</li>
+        <li>Mamouth Sokhna Sarr</li>
+        <li>Baba Rokhy Sarr</li>
+        <li>Yatma Sarr</li>
+        <li>Oumar Anta Sarr</li>
+        <li>Samba Adame Sarr</li>
+        <li>Abdou Diengoye Sarr</li>
+        <li>Doudou Mayrame Sarr</li>
+        <li>Mor Sarr</li>
+        <li>Amadou Gueye</li>
+        <li>Amath Doudou Sarr (actuel chef de village)</li>
+      </ol>
+      <figure>
+        <div class="image-placeholder">[Photo: Le chef actuel du village et les notables]</div>
+      </figure>
+    </section>
+
+    <!-- GEOGRAPHIE -->
+    <section id="geographie">
+      <h2>Géographie et Localisation</h2>
+      <p>Thiarène est situé dans la région de Matam, au nord-est du Sénégal. La région est frontalière avec la Mauritanie et est traversée par le fleuve Sénégal.</p>
+      <p>Le village se caractérise par un paysage sahélien typique, avec une végétation composée principalement d'acacias, de baobabs et de palmiers. Le climat est sahélien, avec une saison sèche prolongée et une saison des pluies courte mais intense.</p>
+      <figure>
+        <div class="image-placeholder">[Carte: Localisation de Thiarène dans la région de Matam]</div>
+      </figure>
+      <p>L'économie locale repose sur l'agriculture (sorgho, mil, maïs), l'élevage (bovins, ovins, caprins) et le commerce transfrontalier avec la Mauritanie.</p>
+    </section>
+
+    <!-- CULTURE -->
+    <section id="culture">
+      <h2>Culture et Traditions</h2>
+      <p>Thiarène est un village au riche patrimoine culturel, marqué par les traditions peules et wolofs. La population est majoritairement musulmane, et la pratique religieuse tient une place centrale dans la vie communautaire.</p>
+
+      <h3>Éducation Coranique</h3>
+      <p>Dès sa fondation, Thiarène a accordé une grande importance à l'éducation coranique. Les daaras (écoles coraniques) continuent d'y jouer un rôle essentiel dans la formation des jeunes générations.</p>
+
+      <h3>Cérémonies et Festivités</h3>
+      <ul>
+        <li>Les fêtes religieuses (Tabaski, Korité, Maouloud)</li>
+        <li>Les cérémonies de baptême (ngente)</li>
+        <li>Les mariages traditionnels</li>
+        <li>Les cérémonies de circoncision collective</li>
+      </ul>
+      <figure>
+        <div class="image-placeholder">[Photo: Cérémonie traditionnelle à Thiarène]</div>
+      </figure>
+
+      <h3>Artisanat</h3>
+      <p>L'artisanat local comprend le travail du cuir, la vannerie et la poterie. Les femmes excellent particulièrement dans la fabrication de nattes tressées et de poteries traditionnelles.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Site réalisé grâce aux recherches de Amina Samb, Aly Sarr, Awa Sambou, Boury Sow, Habib Fallou Sarr, et Bigue Sarr</p>
+    <p>© 2023 - Histoire de Thiarène, Matam</p>
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Animation d'apparition progressive
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
+</body>
+  </html>
